@@ -1,0 +1,34 @@
+#version: '3.8'
+
+services:
+  db_Strategic:
+    image: postgres:latest
+    container_name: postgres_db_Strategic
+    environment:
+      POSTGRES_DB: mydatabase_Strategic
+      POSTGRES_USER: myuser_Strategic
+      POSTGRES_PASSWORD: mypassword_Strategic
+    ports:
+      - "5435:5432"
+    volumes:
+      - db_Strategic_data:/var/lib/postgresql/data
+      - ./init_level_3.sql:/docker-entrypoint-initdb.d/init_level_3.sql
+
+  #python-app:
+    #build: ./python-app
+    #environment:
+      #DB_NAME: mydatabase_A
+      #DB_USER: myuser_A
+      #DB_PASSWORD: mypassword_A
+      #DB_HOST: db_A
+      #DB_PORT: 5432
+      #SECTOR_LETTER: ${SECTOR_LETTER}
+      #NUM_ACTUATORS_PER_SECTOR: ${NUM_ACTUATORS_PER_SECTOR}
+      #INTERVAL_IN_SECONDS: ${INTERVAL_IN_SECONDS}
+      #NUM_INTERVALS: ${NUM_INTERVALS}
+    #depends_on:
+      #- db_A
+
+volumes:
+  db_Strategic_data:
+

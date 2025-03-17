@@ -1,0 +1,11 @@
+A2
+167.05099088307384
+0
+10
+5
+65.31234827041627
+-----------------------------------
+Total simulation time: 386.3263545036316 seconds
+Number of intervals: 20
+Interval duration: 15 seconds
+Time unit pause: 0.0 seconds

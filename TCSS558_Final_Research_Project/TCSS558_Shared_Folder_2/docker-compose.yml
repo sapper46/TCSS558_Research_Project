@@ -1,0 +1,84 @@
+#version: '3.8'
+
+services:
+  db_A:
+    image: postgres:latest
+    container_name: postgres_db_A
+    environment:
+      POSTGRES_DB: mydatabase_A
+      POSTGRES_USER: myuser_A
+      POSTGRES_PASSWORD: mypassword_A
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_A_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  db_B:
+    image: postgres:latest
+    container_name: postgres_db_B
+    environment:
+      POSTGRES_DB: mydatabase_B
+      POSTGRES_USER: myuser_B
+      POSTGRES_PASSWORD: mypassword_B
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_B_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  db_C:
+    image: postgres:latest
+    container_name: postgres_db_C
+    environment:
+      POSTGRES_DB: mydatabase_C
+      POSTGRES_USER: myuser_C
+      POSTGRES_PASSWORD: mypassword_C
+    ports:
+      - "5434:5432"
+    volumes:
+      - db_C_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  op_db_manager_a:
+    build: .
+    environment:
+      - op_db_letter=A
+      - op_isolation_level=SERIALIZABLE
+    depends_on:
+      - db_A
+      - db_B
+      - db_C
+    stdin_open: true # Keep stdin open even if not attached
+    tty: true        # Allocate a pseudo-TTY
+
+  op_db_manager_b:
+    build: .
+    environment:
+      - op_db_letter=B
+      - op_isolation_level=SERIALIZABLE
+    depends_on:
+      - db_A
+      - db_B
+      - db_C
+    stdin_open: true # Keep stdin open even if not attached
+    tty: true        # Allocate a pseudo-TTY
+
+  op_db_manager_c:
+    build: .
+    environment:
+      - op_db_letter=C
+      - op_isolation_level=SERIALIZABLE
+    depends_on:
+      - db_A
+      - db_B
+      - db_C
+    stdin_open: true # Keep stdin open even if not attached
+    tty: true        # Allocate a pseudo-TTY
+
+
+
+volumes:
+  db_A_data:
+  db_B_data:
+  db_C_data:

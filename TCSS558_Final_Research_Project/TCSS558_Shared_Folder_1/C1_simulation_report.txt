@@ -1,0 +1,11 @@
+C1
+164.98925462630993
+0
+8
+6
+49.388364017009735
+-----------------------------------
+Total simulation time: 381.3511219024658 seconds
+Number of intervals: 20
+Interval duration: 15 seconds
+Time unit pause: 0.0 seconds

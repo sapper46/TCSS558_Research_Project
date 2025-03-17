@@ -1,0 +1,253 @@
+version: '3.8'
+
+services:
+  sensor:
+    build:
+      context: ./sensor_docker_file
+      dockerfile: Dockerfile
+    container_name: sensor_container_a1
+    environment:
+      - SECTOR_LETTER=A
+      - SECTOR_NUMBER=1
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - FILE_SIZE=2
+      - ISOLATION_LEVEL=3
+      - TARGET_PRIORITIZATION=False
+    volumes:
+      #- /home/ubuntu:/app/
+      - /home/ubuntu:/app/host_files
+    command: python3 -u sensor.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  sensor2:
+    build:
+      context: ./sensor_docker_file
+      dockerfile: Dockerfile
+    container_name: sensor_container_a2
+    environment:
+      - SECTOR_LETTER=A
+      - SECTOR_NUMBER=2
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - FILE_SIZE=2
+      - ISOLATION_LEVEL=3
+      - TARGET_PRIORITIZATION=False
+    volumes:
+      #- /home/ubuntu:/app/
+      - /home/ubuntu:/app/host_files
+    command: python3 -u sensor.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  sensor3:
+    build:
+      context: ./sensor_docker_file
+      dockerfile: Dockerfile
+    container_name: sensor_container_b1
+    environment:
+      - SECTOR_LETTER=B
+      - SECTOR_NUMBER=1
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - FILE_SIZE=2
+      - ISOLATION_LEVEL=3
+      - TARGET_PRIORITIZATION=False
+    volumes:
+      #- /home/ubuntu:/app/
+      - /home/ubuntu:/app/host_files
+    command: python3 -u sensor.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  sensor4:
+    build:
+      context: ./sensor_docker_file
+      dockerfile: Dockerfile
+    container_name: sensor_container_b2
+    environment:
+      - SECTOR_LETTER=B
+      - SECTOR_NUMBER=2
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - FILE_SIZE=2
+      - ISOLATION_LEVEL=3
+      - TARGET_PRIORITIZATION=False
+    volumes:
+      #- /home/ubuntu:/app/
+      - /home/ubuntu:/app/host_files
+    command: python3 -u sensor.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  sensor5:
+    build:
+      context: ./sensor_docker_file
+      dockerfile: Dockerfile
+    container_name: sensor_container_c1
+    environment:
+      - SECTOR_LETTER=C
+      - SECTOR_NUMBER=1
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - FILE_SIZE=2
+      - ISOLATION_LEVEL=3
+      - TARGET_PRIORITIZATION=False
+    volumes:
+      #- /home/ubuntu:/app/
+      - /home/ubuntu:/app/host_files
+    command: python3 -u sensor.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  sensor6:
+    build:
+      context: ./sensor_docker_file
+      dockerfile: Dockerfile
+    container_name: sensor_container_c2
+    environment:
+      - SECTOR_LETTER=C
+      - SECTOR_NUMBER=2
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - FILE_SIZE=2
+      - ISOLATION_LEVEL=3
+      - TARGET_PRIORITIZATION=False
+    volumes:
+      #- /home/ubuntu:/app/
+      - /home/ubuntu:/app/host_files
+    command: python3 -u sensor.py
+    stdin_open: true  # Keep stdin open even if not attached
+  
+  actuator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actuator_container_a1
+    environment:
+      - SECTOR_LETTER=A
+      - ACTUATOR_NUMBER=1
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - ISOLATION_LEVEL=SERIALIZABLE
+    volumes:
+      - /home/ubuntu:/app/
+    command: python3 -u actuator.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  actuator2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actuator_container_a2
+    environment:
+      - SECTOR_LETTER=A
+      - ACTUATOR_NUMBER=2
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - ISOLATION_LEVEL=SERIALIZABLE
+    volumes:
+      - /home/ubuntu:/app/
+    command: python3 -u actuator.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  actuator3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actuator_container_b1
+    environment:
+      - SECTOR_LETTER=B
+      - ACTUATOR_NUMBER=1
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - ISOLATION_LEVEL=SERIALIZABLE
+    volumes:
+      - /home/ubuntu:/app/
+    command: python3 -u actuator.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  actuator4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actuator_container_b2
+    environment:
+      - SECTOR_LETTER=B
+      - ACTUATOR_NUMBER=2
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - ISOLATION_LEVEL=SERIALIZABLE
+    volumes:
+      - /home/ubuntu:/app/
+    command: python3 -u actuator.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  actuator5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actuator_container_c1
+    environment:
+      - SECTOR_LETTER=C
+      - ACTUATOR_NUMBER=1
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - ISOLATION_LEVEL=SERIALIZABLE
+    volumes:
+      - /home/ubuntu:/app/
+    command: python3 -u actuator.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+  actuator6:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: actuator_container_c2
+    environment:
+      - SECTOR_LETTER=C
+      - ACTUATOR_NUMBER=2
+      - NUM_ACTUATORS_PER_SECTOR=2
+      - NUM_SECTORS=3
+      - INTERVAL_IN_SECONDS=15
+      - NUM_INTERVALS=20
+      - TIME_UNIT_PAUSE=0
+      - ISOLATION_LEVEL=SERIALIZABLE
+    volumes:
+      - /home/ubuntu:/app/
+    command: python3 -u actuator.py
+    stdin_open: true  # Keep stdin open even if not attached
+
+
+
+        
+
